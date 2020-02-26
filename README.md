@@ -2,7 +2,7 @@
 
 This repo will cover the documentation of how I solve problems on OverTheWire wargames.
 
-Important Note Smart people attempt solving the problem first before checking the answer from somewhere else, so be smart if you want to be the best. 
+Important Note: Smart people attempt solving the problem first before checking the answer from somewhere else, so be smart if you want to be the best. 
 
 About Wargames:
 
