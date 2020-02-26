@@ -1,0 +1,19 @@
+┌─[root@parrot]─[/tmp]
+└──╼ #nano sshkey.private
+┌─[root@parrot]─[/tmp]
+└──╼ #chmod 600 sshkey.private 
+┌─[root@parrot]─[/tmp]
+└──╼ #ssh bandit17@bandit.labs.overthewire.org -p 2220 -i sshkey.private 
+
+bandit17@bandit:~$ ls
+passwords.new  passwords.old
+bandit17@bandit:~$ file *
+passwords.new: ASCII text
+passwords.old: ASCII text
+bandit17@bandit:~$ diff passwords.new passwords.old 
+42c42
+< kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+---
+> hlbSBPAWJmL6WFDb06gpTx1pPButblOA
+bandit17@bandit:~$ 
+

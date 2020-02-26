@@ -1,0 +1,7 @@
+┌─[root@parrot]─[/]
+└──╼ #ssh bandit8@bandit.labs.overthewire.org -p 2220 
+
+bandit8@bandit:~$ cat data.txt | sort | uniq -u
+UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+bandit8@bandit:~$ 
+

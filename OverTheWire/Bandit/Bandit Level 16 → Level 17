@@ -1,0 +1,149 @@
+┌─[✗]─[root@parrot]─[/]
+└──╼ #ssh bandit16@bandit.labs.overthewire.org -p 2220 
+
+bandit16@bandit:~$ man nmap
+bandit16@bandit:~$ nmap -sT -A -p 31000-32000 localhost 
+
+Starting Nmap 7.40 ( https://nmap.org ) at 2020-02-01 08:09 CET
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00024s latency).
+Not shown: 999 closed ports
+PORT      STATE SERVICE     VERSION
+31518/tcp open  ssl/echo
+| ssl-cert: Subject: commonName=localhost
+| Subject Alternative Name: DNS:localhost
+| Not valid before: 2020-01-05T15:57:58
+|_Not valid after:  2021-01-04T15:57:58
+|_ssl-date: TLS randomness does not represent time
+31790/tcp open  ssl/unknown
+| fingerprint-strings: 
+|   FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, Kerberos, LDAPSearchReq, LPDString, RTSPRequest, SIPOptions, SSLSessionReq, TLSSessionReq: 
+|_    Wrong! Please enter the correct current password
+| ssl-cert: Subject: commonName=localhost
+| Subject Alternative Name: DNS:localhost
+| Not valid before: 2020-01-05T15:57:58
+|_Not valid after:  2021-01-04T15:57:58
+|_ssl-date: TLS randomness does not represent time
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port31790-TCP:V=7.40%T=SSL%I=7%D=2/1%Time=5E352435%P=x86_64-pc-linux-gn
+SF:u%r(GenericLines,31,"Wrong!\x20Please\x20enter\x20the\x20correct\x20cur
+SF:rent\x20password\n")%r(GetRequest,31,"Wrong!\x20Please\x20enter\x20the\
+SF:x20correct\x20current\x20password\n")%r(HTTPOptions,31,"Wrong!\x20Pleas
+SF:e\x20enter\x20the\x20correct\x20current\x20password\n")%r(RTSPRequest,3
+SF:1,"Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x20password\n
+SF:")%r(Help,31,"Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x2
+SF:0password\n")%r(SSLSessionReq,31,"Wrong!\x20Please\x20enter\x20the\x20c
+SF:orrect\x20current\x20password\n")%r(TLSSessionReq,31,"Wrong!\x20Please\
+SF:x20enter\x20the\x20correct\x20current\x20password\n")%r(Kerberos,31,"Wr
+SF:ong!\x20Please\x20enter\x20the\x20correct\x20current\x20password\n")%r(
+SF:FourOhFourRequest,31,"Wrong!\x20Please\x20enter\x20the\x20correct\x20cu
+SF:rrent\x20password\n")%r(LPDString,31,"Wrong!\x20Please\x20enter\x20the\
+SF:x20correct\x20current\x20password\n")%r(LDAPSearchReq,31,"Wrong!\x20Ple
+SF:ase\x20enter\x20the\x20correct\x20current\x20password\n")%r(SIPOptions,
+SF:31,"Wrong!\x20Please\x20enter\x20the\x20correct\x20current\x20password\
+SF:n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 89.02 seconds
+bandit16@bandit:~$ openssl s_client -connect localhost:31790
+CONNECTED(00000003)
+depth=0 CN = localhost
+verify error:num=18:self signed certificate
+verify return:1
+depth=0 CN = localhost
+verify return:1
+---
+Certificate chain
+ 0 s:/CN=localhost
+   i:/CN=localhost
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIICBjCCAW+gAwIBAgIEHYaZVDANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDDAls
+b2NhbGhvc3QwHhcNMjAwMTA1MTU1NzU4WhcNMjEwMTA0MTU1NzU4WjAUMRIwEAYD
+VQQDDAlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALnNkoES
+dc+bJYmoBnjc43xt4n/zq0OIlxe37wkJzsH4Zkr5wHwoRTH4Q/g4MarLhcHpyFS7
+YBT1hFdxG76tlWhQKjqe680PnxHMrZJFVtO/Gscl9luzalM/h2AebrJ0lX9pPTBX
+Yrizk17mvyl50yYj9MLuvIAfb353gv3frwcRAgMBAAGjZTBjMBQGA1UdEQQNMAuC
+CWxvY2FsaG9zdDBLBglghkgBhvhCAQ0EPhY8QXV0b21hdGljYWxseSBnZW5lcmF0
+ZWQgYnkgTmNhdC4gU2VlIGh0dHBzOi8vbm1hcC5vcmcvbmNhdC8uMA0GCSqGSIb3
+DQEBBQUAA4GBADRDuQtY5NX3aZpNcgracBO3f5fNhdTYp+qERd6xVhq5wdEn9iuJ
+zXJh/halRZuriUnqoQmhhmHlBX4NGVVue+9OSh3yfGeNDkP+rnZ0Xji4gXRiBZao
++HCq5y9yG1sEufHUFCq2ZRZQ9IOghWiA/qxxGQQD+hocFVljquCricbf
+-----END CERTIFICATE-----
+subject=/CN=localhost
+issuer=/CN=localhost
+---
+No client certificate CA names sent
+Peer signing digest: SHA512
+Server Temp Key: X25519, 253 bits
+---
+SSL handshake has read 1019 bytes and written 269 bytes
+Verification error: self signed certificate
+---
+New, TLSv1.2, Cipher is ECDHE-RSA-AES256-GCM-SHA384
+Server public key is 1024 bit
+Secure Renegotiation IS supported
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : ECDHE-RSA-AES256-GCM-SHA384
+    Session-ID: 97AB6AD3D873303B3DBD8881C3EA59EB6375942405108F6CA55A4B6DB229A217
+    Session-ID-ctx: 
+    Master-Key: 6DE2A774B62470C1529FE5F3910323AE8AC4C65C80AC5C2708DE6F95FFB82859434355B76ABFF3E259DFC372D6D789D9
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    TLS session ticket lifetime hint: 7200 (seconds)
+    TLS session ticket:
+    0000 - ba ef 89 66 b0 7e fc 80-8f e1 37 6a 85 4c c3 2c   ...f.~....7j.L.,
+    0010 - 50 b8 1d 59 d1 c4 82 07-9a cb a0 ae d4 ea 35 59   P..Y..........5Y
+    0020 - 91 aa 4d 9b 3f 35 63 b8-17 c6 4a 84 54 a3 4d 57   ..M.?5c...J.T.MW
+    0030 - a4 05 37 be cf 51 38 8d-f7 14 80 dc 51 7d 9f fd   ..7..Q8.....Q}..
+    0040 - 79 a4 9a bb 79 77 bc 82-66 b2 52 c9 42 1e 37 eb   y...yw..f.R.B.7.
+    0050 - e1 24 d0 60 88 a2 c4 f1-50 87 1c 21 f4 39 aa 12   .$.`....P..!.9..
+    0060 - f5 a7 b2 fa 20 49 e9 d9-60 13 1e d7 d0 37 8d 65   .... I..`....7.e
+    0070 - f2 55 6a cd 80 ee f1 57-b0 77 43 b1 ec 9f 54 e2   .Uj....W.wC...T.
+    0080 - d5 ec a0 fd d4 7b 7b 8f-14 cb f9 2c 29 02 7e 71   .....{{....,).~q
+    0090 - a1 4a f3 ae 72 6b 40 10-3c 69 d7 01 9d e7 f4 26   .J..rk@.<i.....&
+
+    Start Time: 1580541392
+    Timeout   : 7200 (sec)
+    Verify return code: 18 (self signed certificate)
+    Extended master secret: yes
+---
+cluFn7wTiGryunymYOu4RcffSxQluehd
+Correct!
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+closed
+bandit16@bandit:~$ 
+

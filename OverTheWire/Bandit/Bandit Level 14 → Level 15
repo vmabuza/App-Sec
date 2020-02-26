@@ -1,0 +1,16 @@
+┌─[✗]─[root@parrot]─[/]
+└──╼ #ssh bandit14@bandit.labs.overthewire.org -p 2220 
+
+bandit14@bandit:~$ nc localhost 30000
+^C
+bandit14@bandit:~$ nc localhost 30000 ┌─[✗]─[root@parrot]─[/]
+^C
+bandit14@bandit:~$ nc localhost 30000 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+Wrong! Please enter the correct current password
+bandit14@bandit:~$ echo 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e | nc localhost 30000
+Correct!
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+bandit14@bandit:~$ 
+

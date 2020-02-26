@@ -1,0 +1,9 @@
+┌─[root@parrot]─[/]
+└──╼ #ssh bandit2@bandit.labs.overthewire.org -p 2220 
+
+bandit2@bandit:~$ more spaces\ in\ this\ filename 
+UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+bandit2@bandit:~$ more 'spaces in this filename'
+UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+bandit2@bandit:~$ 
+

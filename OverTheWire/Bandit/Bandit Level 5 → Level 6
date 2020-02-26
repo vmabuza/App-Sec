@@ -1,0 +1,42 @@
+┌─[✗]─[root@parrot]─[/]
+└──╼ #ssh bandit5@bandit.labs.overthewire.org -p 2220 
+
+
+bandit5@bandit:~/inhere$ ls -la
+total 88
+drwxr-x--- 22 root bandit5 4096 Oct 16  2018 .
+drwxr-xr-x  3 root root    4096 Oct 16  2018 ..
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere00
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere01
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere02
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere03
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere04
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere05
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere06
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere07
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere08
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere09
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere10
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere11
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere12
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere13
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere14
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere15
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere16
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere17
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere18
+drwxr-x---  2 root bandit5 4096 Oct 16  2018 maybehere19
+bandit5@bandit:~/inhere$ find . -type f -size 1033c -readable ! -executable 
+./maybehere07/.file2
+bandit5@bandit:~/inhere$ more maybehere07/.file2
+DXjZPULLxYr17uwoI01bNLQbtFemEgo7
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                                                
+                                                                                                        
+bandit5@bandit:~/inhere$ 
+

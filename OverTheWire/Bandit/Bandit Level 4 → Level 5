@@ -1,0 +1,13 @@
+┌─[root@parrot]─[/]
+└──╼ #ssh bandit4@bandit.labs.overthewire.org -p 2220 
+
+bandit4@bandit:~/inhere$ cat ./-file0*
+����������~%    C[�걱>��| ����U"7�w���H��ê�Q����(���#����T�v��(�ִ�����A*�
+2J�Ş؇_�y7��.A��u��#���w$N?c�-��Db3��=���=<�W�����ht�Z��!▒��{�U
+                                                              �+��pm���;��:D��^��@�gl�Q���@�%@���▒ZP*E��1�V���̫*����koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+FPn�
+    '�U���M��/u
+               XS
+�mu�z���хN�{���Y�d4����▒]3�����9(�
+Q���bandit4@bandit:~/inhere$ 
+

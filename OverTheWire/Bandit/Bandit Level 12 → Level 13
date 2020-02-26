@@ -1,0 +1,90 @@
+┌─[✗]─[root@parrot]─[/]
+└──╼ #ssh bandit12@bandit.labs.overthewire.org -p 2220 
+
+bandit12@bandit:~$ ls
+data.txt
+bandit12@bandit:~$ mkdir /tmp/vmabuza
+bandit12@bandit:~$ cp data.txt /tmp/vmabuza
+bandit12@bandit:~$ cd /tmp/vmabuza
+bandit12@bandit:/tmp/vmabuza$ ls
+data.txt
+bandit12@bandit:/tmp/vmabuza$ file
+Usage: file [-bcEhikLlNnprsvzZ0] [--apple] [--extension] [--mime-encoding] [--mime-type]
+            [-e testname] [-F separator] [-f namefile] [-m magicfiles] file ...
+       file -C [-m magicfiles]
+       file [--help]
+bandit12@bandit:/tmp/vmabuza$ file data.txt 
+data.txt: ASCII text
+bandit12@bandit:/tmp/vmabuza$ xdd -r data.txt  > vmabuza
+-bash: xdd: command not found
+bandit12@bandit:/tmp/vmabuza$ xxd -r data.txt  > vmabuza 
+bandit12@bandit:/tmp/vmabuza$ ls
+data.txt  vmabuza
+bandit12@bandit:/tmp/vmabuza$ file vmabuza 
+vmabuza: gzip compressed data, was "data2.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from Unix
+bandit12@bandit:/tmp/vmabuza$ mv vmabuza vmabuza.gz
+bandit12@bandit:/tmp/vmabuza$ gunzip vmabuza.gz 
+bandit12@bandit:/tmp/vmabuza$ ls
+data.txt  vmabuza
+bandit12@bandit:/tmp/vmabuza$ file vmabuza 
+vmabuza: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/vmabuza$ mv vmabuza vmabuza.bz2
+bandit12@bandit:/tmp/vmabuza$ file vmabuza          
+vmabuza: cannot open `vmabuza' (No such file or directory)
+bandit12@bandit:/tmp/vmabuza$ ls
+data.txt  vmabuza.bz2
+bandit12@bandit:/tmp/vmabuza$ bzip2 -d vmabuza.bz2 
+bandit12@bandit:/tmp/vmabuza$ ls
+data.txt  vmabuza
+bandit12@bandit:/tmp/vmabuza$ file vmabuza 
+vmabuza: gzip compressed data, was "data4.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from Unix
+bandit12@bandit:/tmp/vmabuza$ mv vmabuza vmabuza.gz
+bandit12@bandit:/tmp/vmabuza$ gunzip vmabuza.gz 
+bandit12@bandit:/tmp/vmabuza$ ls 
+data.txt  vmabuza
+bandit12@bandit:/tmp/vmabuza$ file vmabuza 
+vmabuza: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/vmabuza$ mv vmabuza vmabuza.tar
+bandit12@bandit:/tmp/vmabuza$ tar -xf vmabuza.tar 
+bandit12@bandit:/tmp/vmabuza$ ls
+data5.bin  data.txt  vmabuza.tar
+bandit12@bandit:/tmp/vmabuza$ file data5.bin 
+data5.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/vmabuza$ mv data5.bin data5.bin.tar
+bandit12@bandit:/tmp/vmabuza$ tar -xf data5.bin.tar 
+bandit12@bandit:/tmp/vmabuza$ ls
+data5.bin.tar  data6.bin  data.txt  vmabuza.tar
+bandit12@bandit:/tmp/vmabuza$ file data6.bin 
+data6.bin: bzip2 compressed data, block size = 900k
+bandit12@bandit:/tmp/vmabuza$ mv data6.bin data6.bin.bz
+bandit12@bandit:/tmp/vmabuza$ bzip2 data6.bin.bz 
+bzip2: Input file data6.bin.bz already has .bz suffix.
+bandit12@bandit:/tmp/vmabuza$ bzip2 -d data6.bin.bz 
+bandit12@bandit:/tmp/vmabuza$ ls
+data5.bin.tar  data6.bin  data.txt  vmabuza.tar
+bandit12@bandit:/tmp/vmabuza$ file data6.bin 
+data6.bin: POSIX tar archive (GNU)
+bandit12@bandit:/tmp/vmabuza$ mv data6.bin data6.bin.tar
+bandit12@bandit:/tmp/vmabuza$ ls
+data5.bin.tar  data6.bin.tar  data.txt  vmabuza.tar
+bandit12@bandit:/tmp/vmabuza$ tar -xf data6.bin.tar 
+bandit12@bandit:/tmp/vmabuza$ ls
+data5.bin.tar  data6.bin.tar  data8.bin  data.txt  vmabuza.tar
+bandit12@bandit:/tmp/vmabuza$ file data8.bin 
+data8.bin: gzip compressed data, was "data9.bin", last modified: Tue Oct 16 12:00:23 2018, max compression, from Unix
+bandit12@bandit:/tmp/vmabuza$ mv data8.bin data8.bin.gz
+bandit12@bandit:/tmp/vmabuza$ gunzip data8.bin.gz 8
+gzip: 8.gz: No such file or directory
+bandit12@bandit:/tmp/vmabuza$ gunzip data8.bin.gz
+gzip: data8.bin.gz: No such file or directory
+bandit12@bandit:/tmp/vmabuza$ ls
+data5.bin.tar  data6.bin.tar  data8.bin  data.txt  vmabuza.tar
+bandit12@bandit:/tmp/vmabuza$ file data8.bin 
+data8.bin: ASCII text
+bandit12@bandit:/tmp/vmabuza$ mv data8.bin data8.bin.txt
+bandit12@bandit:/tmp/vmabuza$ file data8.bin.txt 
+data8.bin.txt: ASCII text
+bandit12@bandit:/tmp/vmabuza$ cat data8.bin.txt 
+The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+bandit12@bandit:/tmp/vmabuza$ 
+

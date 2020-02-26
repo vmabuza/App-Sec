@@ -1,0 +1,55 @@
+┌─[root@parrot]─[/tmp]
+└──╼ #ssh bandit20@bandit.labs.overthewire.org -p 2220
+
+bandit20@bandit:~$ ls
+suconnect
+bandit20@bandit:~$ ./suconnect 
+Usage: ./suconnect <portnumber>
+This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.
+bandit20@bandit:~$ nmap localhost 
+
+Starting Nmap 7.40 ( https://nmap.org ) at 2020-02-01 11:06 CET
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.00023s latency).
+Not shown: 997 closed ports
+PORT      STATE SERVICE
+22/tcp    open  ssh
+113/tcp   open  ident
+30000/tcp open  ndmps
+
+Nmap done: 1 IP address (1 host up) scanned in 0.08 seconds
+bandit20@bandit:~$ tmux
+
+
+bandit20@bandit:~$ nc -lvp 4800
+listening on [any] 4800 ...
+connect to [127.0.0.1] from localhost [127.0.0.1] 48406
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+bandit20@bandit:~$
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+bandit20@bandit:~$ ./suconnect 4800
+Read: GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+Password matches, sending next password
+bandit20@bandit:~$
+
+
+
+
+
+
+
+
+
+
+
+
